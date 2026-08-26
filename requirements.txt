@@ -1,0 +1,14 @@
+numpy>=1.26
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.5
+statsmodels>=0.14
+joblib>=1.4
+PyYAML>=6.0
+playwright>=1.48
+fastapi>=0.115
+uvicorn[standard]>=0.30
+streamlit>=1.39
+plotly>=5.24
+requests>=2.32
+streamlit-autorefresh>=1.0

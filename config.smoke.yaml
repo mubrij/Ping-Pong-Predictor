@@ -1,0 +1,80 @@
+sportybet:
+  url: https://www.sportybet.com/ng/m/games/ping-pong
+collector:
+  user_data_dir: ./browser_profile
+  mode: network
+  feed_url_contains: ''
+  json_items_path: ''
+  round_id_field: ''
+  multiplier_field: ''
+  timestamp_field: ''
+  dom_history_item_selector: ''
+  dom_round_id_attribute: ''
+  dom_multiplier_selector: ''
+storage:
+  sqlite_path: ./data/smoke.sqlite3
+features:
+  max_lag: 20
+  rolling_windows:
+  - 5
+  - 10
+  - 20
+  - 50
+  distribution_thresholds:
+  - 1.2
+  - 1.5
+  - 2.0
+  - 3.0
+  - 5.0
+model:
+  min_rounds: 800
+  train_fraction: 0.65
+  validation_fraction: 0.2
+  calibration_splits: 2
+  thresholds:
+  - 1.2
+  - 2.0
+  - 5.0
+  candidates:
+    logistic: true
+    hist_gradient_boosting: true
+    extra_trees: false
+  min_relative_logloss_improvement: 0.005
+  min_auc: 0.515
+  min_brier_improvement: 0.001
+  min_test_samples: 100
+  ensemble_temperature: 0.02
+diagnostics:
+  autocorr_lags: 40
+  drift_reference_window: 2000
+  drift_recent_window: 500
+  mutual_information_bins: 20
+runtime:
+  prediction_poll_seconds: 2
+  retrain_every_new_rounds: 500
+  diagnostics_every_new_rounds: 100
+  model_path: ./models/smoke.joblib
+  metrics_path: ./models/pingpong_ensemble.metrics.json
+api:
+  host: 127.0.0.1
+  port: 8000
+dashboard:
+  api_base_url: http://127.0.0.1:8000
+  refresh_ms: 2000
+  history_points: 300
+transformer:
+  enabled: false
+  model_path: ./models/smoke_transformer.pt
+  sequence_length: 32
+  d_model: 32
+  nhead: 4
+  num_layers: 1
+  dim_feedforward: 64
+  dropout: 0.1
+  batch_size: 64
+  epochs: 3
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  patience: 2
+  min_rounds: 1000
+  device: auto

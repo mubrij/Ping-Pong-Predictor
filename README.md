@@ -1,5 +1,3 @@
-# Ping-Pong-Predictor
-
 # Ping Pong Advanced Research Predictor
 
 A read-only pipeline that collects completed Ping Pong rounds, stores them in SQLite, trains a leakage-safe ensemble, exposes results through FastAPI, and presents them in a live Streamlit research dashboard.
